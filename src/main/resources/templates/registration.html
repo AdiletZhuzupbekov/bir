@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" href="/static/style.css">
+<div th:insert="parts/head :: head"></div>
+<title>Регистрация</title>
+<body>
+<div  class="container py-3">
+Добавить нового пользователя
+
+<form action="/registration" method="post">
+    <span th:if="${message!= null}" th:text="${message}">Static summary</span>
+    <div class="form-group row mt-4">
+        <label class="col-sm-2 col-form-label"> User Name : </label>
+        <div class="col-sm-4">
+            <input type="text" name="username" th:class="${usernameError} ? 'form-control is-invalid' : 'form-control'" placeholder="Введите логин" ide/>
+            <div class="invalid-feedback" th:text="${usernameError}"></div>
+        </div>
+    </div>
+    <div class="form-group row mt-4">
+        <label class="col-sm-2 col-form-label"> Password:  </label>
+        <div class="col-sm-4">
+            <input type="password" name="password" th:class="${passwordError} ? 'form-control is-invalid' : 'form-control'" placeholder="Введите пороль"/>
+            <div class="invalid-feedback" th:text="${passwordError}"></div>
+        </div>
+    </div>
+    <div class="form-group row mt-4">
+        <label class="col-sm-2 col-form-label"> Password:  </label>
+        <div class="col-sm-4">
+            <input type="password2" name="password2" th:class="${password2Error} ? 'form-control is-invalid' : 'form-control'" placeholder="Введите пороль павторно"/>
+            <div class="invalid-feedback" th:text="${password2Error}"></div>
+        </div>
+    </div>
+    <div class="form-group row mt-4">
+        <label class="col-sm-2 col-form-label"> Email  </label>
+        <div class="col-sm-4">
+            <input type="email" name="email" th:class="${emailError} ? 'form-control is-invalid' : 'form-control'" placeholder="some@some.com " />
+            <div class="invalid-feedback" th:text="${emailError}"></div>
+        </div>
+    </div>
+    <button class="btn btn-primary mt-4" type="submit">Sing in</button>
+</form>
+<div th:insert="parts/footer :: footer"></div>
+</div>
+</body>
+</html>

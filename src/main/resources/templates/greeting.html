@@ -1,0 +1,16 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:insert="parts/head :: head"></div>
+
+<body>
+<div th:insert="parts/jssrc :: jssrc"></div>
+
+<div class="container py-3">
+    <h3 th:text="${title}"></h3>
+    <a href="/main">Войти</a>
+
+    <div th:insert="parts/footer :: footer"></div>
+</div>
+</body>
+</html>

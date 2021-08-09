@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="parts/head :: head"></div>
+
+<body>
+<div th:insert="parts/jssrc :: jssrc"></div>
+
+<div class="container py-3">
+    <div th:insert="parts/navbar :: navbar"></div>
+
+    <h3>Страница Блога</h3>
+
+    <div class="form-row ">
+        <div class="form-group col-md-2">
+                <form  method="get" action="/blog" class="form-inline">
+                    <input type="text" name="filter" class="form-control mt-2 " th:value="${filter}" placeholder="Поиск по тегу">
+                    <button type="submit" class=" form-control btn btn-outline-primary mt-2">Найти</button>
+                </form>
+        </div>
+    </div>
+
+    <a class="btn btn-primary mt-4" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Добавить сообщение
+    </a>
+    <div th:class="${textError} ? 'collapse show' : 'collapse' " id="collapseExample">
+        <form  action="/blog" method="post" enctype="multipart/form-data">
+            <div class="form-group mt-2">
+                <input type="text" name="text" placeholder="Введите текст" th:class=" ${textError} ? 'form-control is-invalid' : ' form-control' ">
+                <div class="invalid-feedback" th:text="${textError}"></div>
+            </div>
+            <div class="form-group mt-2">
+                <input type="text" name="tag" placeholder="Введите тег" th:class="${tagError} ? 'form-control is-invalid' : 'form-control' "  />
+                <div class="invalid-feedback" th:text="${tagError}"></div>
+            </div>
+            <input type="file" name="file" class="form-control mt-2 ">
+            <button type="submit" class=" form-control btn btn-outline-primary mt-2">Добавить</button>
+        </form>
+    </div>
+
+    <div class="card-columns">
+        <div class="card my-3" style="width: 18rem" th:each="el : ${messages}">
+                <div th:if="${el.filename != null}">
+                    <img class="card-img-top" th:src="@{/img/{filename}(filename = ${el.filename})}">
+                </div>
+                <div class="m-2">
+                    <span th:text="${el.text}" />
+                    <i th:text="${el.tag}"/>
+                </div>
+            <div class="card-footer text-muted" th:text="${el.authorName}"></div>
+        </div>
+    </div>
+
+    <div th:insert="parts/footer :: footer"></div>
+</div>
+</body>
+</html>

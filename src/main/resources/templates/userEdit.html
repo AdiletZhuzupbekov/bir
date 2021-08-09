@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:insert="parts/head :: head"></div>
+
+<body>
+<div th:insert="parts/jssrc :: jssrc"></div>
+
+
+<div class="container py-3">
+    <div th:insert="parts/navbar :: navbar"></div>
+
+    <form action="/user" method="post">
+        <input type="text" th:value="${user.username}" username="username" name="username">
+        <ul>
+            <li th:each="role : ${roles}">
+                <label th:text="${role}">ROLE_USER</label>
+                <input type="checkbox" th:name="${role}" th:checked="${#arrays.contains(user.roles, role)}">
+            </li>
+        </ul>
+        <input type="hidden" th:value="${user.id}" username="userID" name="userId">
+
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <div th:insert="parts/footer :: footer"></div>
+</div>
+</body>
+</html>

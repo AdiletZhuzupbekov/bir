@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" href="/static/style.css">
+<div th:insert="parts/head :: head"></div>
+<body>
+<div th:insert="parts/jssrc :: jssrc"></div>
+<div class="container py-3">
+
+<form action="/login" method="post">
+    <span th:if="${message!= null}" th:text="${message}">Static summary</span>
+    <div class="form-group row mt-4">
+        <label class="col-sm-2 col-form-label"> User Name : </label>
+        <div class="col-sm-4">
+            <input type="text" name="username" class="form-control" placeholder="Введите логин" />
+        </div>
+    </div>
+    <div class="form-group row mt-4">
+        <label class="col-sm-2 col-form-label"> Password:  </label>
+        <div class="col-sm-4">
+            <input type="password" name="password" class="form-control" placeholder="Введите пороль"/>
+        </div>
+    </div>
+    <button class="btn btn-primary mt-4" type="submit">Sing in</button>
+</form>
+<a href="/registration">add new user</a>
+
+<div th:insert="parts/footer :: footer"></div>
+</div>
+</body>
+</html>

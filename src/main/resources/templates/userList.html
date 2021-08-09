@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<div th:insert="parts/head :: head"></div>
+
+<body>
+<div th:insert="parts/jssrc :: jssrc"></div>
+
+<div class="container py-3">
+    <div th:insert="parts/navbar :: navbar"></div>
+
+    <div class="container py-3">
+    <h3 th:text="${title}"></h3>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name   -</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="el : ${users}">
+            <td th:text="${el.username}">
+            <td th:text="${el.roles}">
+            <td><a th:href="@{/user/{id} (id=${el.id})}">edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+        <div th:insert="parts/footer :: footer"></div>
+    </div>
+</div>
+</body>
+</html>
